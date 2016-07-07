@@ -11,21 +11,24 @@
 }
 </style>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script type="text/javascript">
+<script>
 /**
  * モバイルで画面そのものをスクロールする際の指を置く場所を確保する
+ * @param {integer} [default_height] - 初期設定での地図の高さ
  */
-var setGmapSize = function  () {
-  // 地図の高さを、画面が600より低ければ「画面 - 100」とし、それ以上ならば500固定とする。
+var setGmapSize = function (default_height) {
+  // 地図の高さを、画面が「default_height + 100」より低ければ「画面 - 100」とし、それ以上ならば「default_height」固定とする。
   // モバイルで画面そのものをスクロールする際の指を置く場所を確保するため、最低限100pxの余裕をとる。
-  $(".gmap").height(($(window).height() < 600) ? $(window).height() - 100 : 500);
+  $(".gmap").height(
+    ($(window).height() < (default_height + 100)) ? $(window).height() - 100 : default_height
+  );
 };
 /**
  * ロード後に実行
  */
 $(function () {
   $(window).on("resize", function () {
-    setGmapSize();
+    setGmapSize(500);
   }).trigger("resize");
 });
 </script>
