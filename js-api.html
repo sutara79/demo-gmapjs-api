@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JavaScript APIで表示</title>
+<style>
+.gmap {
+  width: 100%;
+  height: 500px;
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCkCwB9mbKUx0x_6_q3lHBbqgk1cQ0LUM"></script>
+<script type="text/javascript">
+/**
+ * スクロール有効
+ */
+var initMap = function () {
+  var myLatLng = {lat: 33.884431, lng: 130.874261};
+
+  // id名「gmap-api1」に対してマップを描画
+  var map = new google.maps.Map(document.getElementById("gmap"), {
+    center: myLatLng,
+    // scrollwheel: false, 【スクロール無効】
+    zoom: 16
+  });
+
+  // マーカーを表示
+  var marker = new google.maps.Marker({
+    map: map,
+    position: myLatLng,
+    title: "小倉城"
+  });
+
+  // マーカーをクリックしたらウィンドウを表示
+  var infowindow = new google.maps.InfoWindow({content: '<h3>小倉城</h3><p><a href="https://goo.gl/maps/abu5xxnghC82" target="_blank">Googleマップで表示</a></p>'});
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
+  infowindow.open(map, marker);
+};
+/**
+ * モバイルで画面そのものをスクロールする際の指を置く場所を確保する
+ */
+var setGmapSize = function  () {
+  // 地図の高さを、画面が600より低ければ「画面 - 100」とし、それ以上ならば500固定とする。
+  // モバイルで画面そのものをスクロールする際の指を置く場所を確保するため、最低限100pxの余裕をとる。
+  $(".gmap").height(($(window).height() < 600) ? $(window).height() - 100 : 500);
+};
+/**
+ * ロード後に実行
+ */
+$(function () {
+  initMap();
+  $(window).on("resize", function () {
+    setGmapSize();
+  }).trigger("resize");
+});
+</script>
+</head>
+<body>
+<h1>JavaScript APIで表示</h1>
+<div class="gmap" id="gmap"></div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>インラインフレームによる埋め込み</title>
+<style>
+.gmap {
+  width: 100%;
+  height: 500px;
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+/**
+ * モバイルで画面そのものをスクロールする際の指を置く場所を確保する
+ */
+var setGmapSize = function  () {
+  // 地図の高さを、画面が600より低ければ「画面 - 100」とし、それ以上ならば500固定とする。
+  // モバイルで画面そのものをスクロールする際の指を置く場所を確保するため、最低限100pxの余裕をとる。
+  $(".gmap").height(($(window).height() < 600) ? $(window).height() - 100 : 500);
+};
+/**
+ * ロード後に実行
+ */
+$(function () {
+  $(window).on("resize", function () {
+    setGmapSize();
+  }).trigger("resize");
+});
+</script>
+</head>
+<body>
+<h1>インラインフレームによる埋め込み</h1>
+<div class="gmap">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.2026086852907!2d130.87207231559822!3d33.88443543400114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3543b8ad94500c23%3A0x1307eedef77d6d68!2z5bCP5YCJ5Z-O!5e0!3m2!1sja!2sus!4v1467778318240" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+  <!-- 【スクロール無効】
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.2026086852907!2d130.87207231559822!3d33.88443543400114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3543b8ad94500c23%3A0x1307eedef77d6d68!2z5bCP5YCJ5Z-O!5e0!3m2!1sja!2sus!4v1467778318240" width="100%" height="100%" frameborder="0" style="border:0;pointer-events:none;" allowfullscreen></iframe> -->
+</div>
+</body>
+</html>

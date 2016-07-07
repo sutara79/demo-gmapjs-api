@@ -1,110 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Googleマップをウェブページで利用する方法</title>
-<style>
-.gmap {
-  width: 100%;
-  height: 500px;
-}
-</style>
-<script src="http://code.jquery.com/jquery-3.0.0.slim.min.js" integrity="sha256-Rf4BadfyCtsvHmO89BUZcbYvNNvZvOT08ALfEzvCsD0=" crossorigin="anonymous"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCkCwB9mbKUx0x_6_q3lHBbqgk1cQ0LUM"></script>
-<script type="text/javascript">
-/**
- * スクロール有効
- */
-var createGMap1 = function () {
-  var myLatLng = {lat: 33.884431, lng: 130.874261};
-
-  // id名「gmap-api1」に対してマップを描画
-  var map = new google.maps.Map(document.getElementById('gmap-api1'), {
-    center: myLatLng,
-    zoom: 16
-  });
-
-  // マーカーを表示
-  var marker = new google.maps.Marker({
-    map: map,
-    position: myLatLng,
-    title: '小倉城'
-  });
-
-  // マーカーをクリックしたらウィンドウを表示
-  var infowindow = new google.maps.InfoWindow({content: '<h3>小倉城</h3><p><a href="https://goo.gl/maps/abu5xxnghC82" target="_blank">Googleマップで表示</a></p>'});
-  marker.addListener('click', function() {
-    infowindow.open(map, marker);
-  });
-  infowindow.open(map, marker);
-};
-/**
- * スクロール無効
- */
-var createGMap2 = function () {
-  var myLatLng = {lat: 33.884431, lng: 130.874261};
-
-  // id名「gmap-api2」に対してマップを描画
-  var map = new google.maps.Map(document.getElementById('gmap-api2'), {
-    center: myLatLng,
-    scrollwheel: false,
-    zoom: 16
-  });
-
-  // マーカーを表示
-  var marker = new google.maps.Marker({
-    map: map,
-    position: myLatLng,
-    title: '小倉城'
-  });
-
-  // マーカーをクリックしたらウィンドウを表示
-  var contentString = '<h3>小倉城</h3><p><a href="https://goo.gl/maps/abu5xxnghC82" target="_blank">Googleマップで表示</a></p>';
-  var infowindow = new google.maps.InfoWindow({content: contentString});
-  marker.addListener('click', function() {
-    infowindow.open(map, marker);
-  });
-  infowindow.open(map, marker);
-};
-var setGmapSize = function  () {
-  // 地図の高さを、画面が600より低ければ「画面 - 100」とし、それ以上ならば500固定とする。
-  // スマホ向けビューで、地図ではなく画面そのものをスクロールする際の指を置く場所を確保するため、最低限100pxの余裕をとる。
-  $(".gmap").height(($(window).height() < 600) ? $(window).height() - 100 : 500);
-}
-/**
- * ロード後に実行
- */
-window.onload = function () {
-  createGMap1();
-  createGMap2();
-  setGmapSize();
-};
-</script>
 </head>
 <body>
 <h1>Googleマップをウェブページで利用する方法</h1>
-<section>
-  <h2>Google Maps JavaScript APIを利用</h2>
-  <ul>
-    <li>APIキーが必要で、利用が少し面倒。</li>
-    <li>マーカーをクリックした際にウィンドウを表示させ、自由に文章を表示できる。</li>
-  </ul>
-  <h3>スクロール有効</h3>
-  <div class="gmap" id="gmap-api1" style="width: 100%; height: 500px;"></div>
-  <h3>スクロール無効</h3>
-  <div class="gmap" id="gmap-api2" style="width: 100%; height: 500px;"></div>
-</section>
-<section>
-  <h2>インラインフレームによる埋め込み</h2>
-  <ul>
-    <li>簡単に利用できる。</li>
-    <li>スクロールを無効にできるが、スクロールだけでなく地図の操作が全くできなくなる。</li>
-  </ul>
-  <h3>スクロール有効</h3>
-  <iframe class="gmap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.2026086852907!2d130.87207231559822!3d33.88443543400114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3543b8ad94500c23%3A0x1307eedef77d6d68!2z5bCP5YCJ5Z-O!5e0!3m2!1sja!2sus!4v1467778318240" frameborder="0" style="border:0" allowfullscreen></iframe>
-  <h3>スクロール無効</h3>
-  <iframe class="gmap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.2026086852907!2d130.87207231559822!3d33.88443543400114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3543b8ad94500c23%3A0x1307eedef77d6d68!2z5bCP5YCJ5Z-O!5e0!3m2!1sja!2sus!4v1467778318240" frameborder="0" style="border:0;pointer-events:none;" allowfullscreen></iframe>
-</section>
+<a href="https://github.com/sutara79/demo-gmapjs-api">view on GitHub</a>
+<ol>
+  <li><a href="js-api.html">JavaScript APIで表示</a></li>
+  <li><a href="embed-api.html">Embed APIによる埋め込み</a></li>
+  <li><a href="iframe.html">インラインフレームによる埋め込み</a></li>
+</ol>
 </body>
 </html>

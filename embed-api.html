@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Embed APIによる埋め込み</title>
+<style>
+.gmap {
+  width: 100%;
+  height: 500px;
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+/**
+ * モバイルで画面そのものをスクロールする際の指を置く場所を確保する
+ */
+var setGmapSize = function  () {
+  // 地図の高さを、画面が600より低ければ「画面 - 100」とし、それ以上ならば500固定とする。
+  // モバイルで画面そのものをスクロールする際の指を置く場所を確保するため、最低限100pxの余裕をとる。
+  $(".gmap").height(($(window).height() < 600) ? $(window).height() - 100 : 500);
+};
+/**
+ * ロード後に実行
+ */
+$(function () {
+  $(window).on("resize", function () {
+    setGmapSize();
+  }).trigger("resize");
+});
+</script>
+</head>
+<body>
+<h1>Embed APIによる埋め込み</h1>
+<div class="gmap">
+  <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=%E6%97%A5%E6%9C%AC%E7%A6%8F%E5%B2%A1%E7%9C%8C%E5%8C%97%E4%B9%9D%E5%B7%9E%E5%B8%82%E5%B0%8F%E5%80%89%E5%8C%97%E5%8C%BA%E5%9F%8E%E5%86%852-1&key=AIzaSyBCkCwB9mbKUx0x_6_q3lHBbqgk1cQ0LUM" allowfullscreen></iframe>
+  <!-- 【スクロール無効】
+  <iframe width="100%" height="100%" frameborder="0" style="border:0;pointer-events:none;" src="https://www.google.com/maps/embed/v1/place?q=%E6%97%A5%E6%9C%AC%E7%A6%8F%E5%B2%A1%E7%9C%8C%E5%8C%97%E4%B9%9D%E5%B7%9E%E5%B8%82%E5%B0%8F%E5%80%89%E5%8C%97%E5%8C%BA%E5%9F%8E%E5%86%852-1&key=AIzaSyBCkCwB9mbKUx0x_6_q3lHBbqgk1cQ0LUM" allowfullscreen></iframe> -->
+</div>
+</body>
+</html>
