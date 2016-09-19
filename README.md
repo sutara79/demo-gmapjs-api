@@ -4,9 +4,11 @@
 
 私個人としては、APIでスクロール無効に設定して使うのが気に入っています。
 
+- - -
 ## デモ
 http://sutara79.github.io/demo-gmapjs-api
 
+- - -
 ## 関連ページ
 - [APIキー管理画面](https://console.developers.google.com/apis/credentials)
 - JavaScript API
@@ -16,7 +18,7 @@ http://sutara79.github.io/demo-gmapjs-api
 - Embed API
     - [デベロッパーガイド](https://developers.google.com/maps/documentation/embed/guide)
 
-
+- - -
 ## ある住所をJavaScript APIで表示する方法
 
 ### 住所の緯度経度を取得
@@ -30,3 +32,7 @@ http://sutara79.github.io/demo-gmapjs-api
   末尾にある`!3d33.884431!4d130.874261`のうち、
   `!3d`と`!4d`を取り除いたものが、小倉城の座標です。  
   (緯度:`33.884431`、経度:`130.874261`)
+
+- - -
+## 関連ブログ記事
+- [Googleマップをページに埋め込む手順 - すたらブログ](http://sutara79.hatenablog.com/entry/2016/07/07/145311)
